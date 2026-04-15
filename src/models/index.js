@@ -6,10 +6,23 @@ const config = require('../core/config');
 const logger = require('../core/logger')('app');
 
 // Join the database connection string
-const connectionString = new URL(config.database.connection);
-connectionString.pathname += config.database.name;
+let connectionString = config.database.connection;
+const dbName = config.database.name;
 
-mongoose.connect(`${connectionString.toString()}`);
+if (connectionString.includes('?')) {
+  // Jika ada parameter (tanda tanya), sisipkan nama database sebelum tanda tanya tersebut
+  const parts = connectionString.split('?');
+  const base = parts[0].endsWith('/') ? parts[0] : `${parts[0]}/`;
+  connectionString = `${base}${dbName}?${parts[1]}`;
+} else {
+  // Jika tidak ada tanda tanya, cukup gabungkan di akhir
+  const base = connectionString.endsWith('/')
+    ? connectionString
+    : `${connectionString}/`;
+  connectionString = `${base}${dbName}`;
+}
+
+mongoose.connect(connectionString);
 
 const db = mongoose.connection;
 db.once('open', () => {
