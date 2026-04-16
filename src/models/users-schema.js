@@ -5,5 +5,13 @@ module.exports = (db) =>
       email: String,
       password: String,
       fullName: String,
+      walletBalance: {
+        type: Number,
+        default: 0,
+      },
+      lastAttendance: {
+        type: Date,
+        default: null,
+      },
     })
   );
