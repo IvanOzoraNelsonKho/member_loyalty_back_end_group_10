@@ -9,5 +9,9 @@ module.exports = (db) =>
         type: Number,
         default: 0,
       },
+      lastAttendance: {
+        type: Date,
+        default: null,
+      },
     })
   );
