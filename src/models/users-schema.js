@@ -5,5 +5,9 @@ module.exports = (db) =>
       email: String,
       password: String,
       fullName: String,
+      walletBalance: {
+        type: Number,
+        default: 0,
+      },
     })
   );
