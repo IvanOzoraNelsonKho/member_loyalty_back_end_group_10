@@ -27,6 +27,7 @@ async function getWalletBalance(userId) {
     return { success: false, error: 'User tidak ditemukan' };
   }
 
+  /* eslint-disable no-underscore-dangle */
   return {
     success: true,
     data: {
