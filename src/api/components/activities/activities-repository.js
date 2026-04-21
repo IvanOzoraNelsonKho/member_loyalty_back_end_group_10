@@ -13,9 +13,10 @@ async function createActivity(title, points, description) {
 }
 
 async function updateActivity(id, title, points, description) {
-  return Activities.updateOne(
-    { _id: id },
-    { $set: { title, points, description } }
+  return Activities.findByIdAndUpdate(
+    id,
+    { title, points, description },
+    { new: true, runValidators: true }
   );
 }
 

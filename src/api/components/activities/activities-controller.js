@@ -12,8 +12,9 @@ async function getActivities(request, response, next) {
 async function getActivity(request, response, next) {
   try {
     const activity = await activitiesService.getActivity(request.params.id);
-    if (!activity)
+    if (!activity) {
       return response.status(404).json({ error: 'Activity tidak ditemukan' });
+    }
     return response.status(200).json(activity);
   } catch (error) {
     return next(error);
@@ -23,7 +24,7 @@ async function getActivity(request, response, next) {
 async function createActivity(request, response, next) {
   try {
     const { title, points, description } = request.body;
-    if (!title || !points) {
+    if (!title || points === undefined) {
       return response
         .status(400)
         .json({ error: 'Title dan points wajib diisi' });
@@ -42,15 +43,20 @@ async function createActivity(request, response, next) {
 async function updateActivity(request, response, next) {
   try {
     const { title, points, description } = request.body;
-    await activitiesService.updateActivity(
+    const result = await activitiesService.updateActivity(
       request.params.id,
       title,
       points,
       description
     );
+
+    if (!result) {
+      return response.status(404).json({ error: 'Activity tidak ditemukan' });
+    }
+
     return response
       .status(200)
-      .json({ message: 'Activity berhasil diperbarui' });
+      .json({ message: 'Activity berhasil diperbarui', data: result });
   } catch (error) {
     return next(error);
   }
@@ -58,7 +64,10 @@ async function updateActivity(request, response, next) {
 
 async function deleteActivity(request, response, next) {
   try {
-    await activitiesService.deleteActivity(request.params.id);
+    const result = await activitiesService.deleteActivity(request.params.id);
+    if (result.deletedCount === 0) {
+      return response.status(404).json({ error: 'Activity tidak ditemukan' });
+    }
     return response.status(200).json({ message: 'Activity berhasil dihapus' });
   } catch (error) {
     return next(error);
