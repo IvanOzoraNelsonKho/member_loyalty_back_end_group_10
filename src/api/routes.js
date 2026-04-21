@@ -1,6 +1,5 @@
 const express = require('express');
 
-// controller / panggil boxnya
 const books = require('./components/books/books-route');
 const users = require('./components/users/users-route');
 const vouchersController = require('./components/vouchers/vouchers-controller');
@@ -9,7 +8,8 @@ const wallet = require('./components/wallet/wallet-route');
 const attendance = require('./components/attendance/attendance-route');
 const catalogs = require('./components/catalogs/catalogs-route');
 
-// wadah yang diexport
+const outlets = require('./components/outlets/outlets-route');
+
 module.exports = () => {
   const app = express.Router();
 
@@ -19,7 +19,6 @@ module.exports = () => {
   attendance(app);
   catalogs(app);
 
-  // isi/route boxnya
   app.get('/vouchers', vouchersController.getVouchers);
   app.post('/redeem', redeemVoucher);
   app.get('/my-vouchers', getMyVouchers);
