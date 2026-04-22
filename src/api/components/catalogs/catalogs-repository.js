@@ -1,23 +1,26 @@
-const { Catalog } = require('../../../models');
+const { Catalogs } = require('../../../models');
 
 async function getCatalogs() {
-  return Catalog.find({});
+  return Catalogs.find({});
 }
 
 async function getCatalog(id) {
-  return Catalog.findById(id);
+  return Catalogs.findById(id);
 }
 
-async function createCatalog(name, description, price) {
-  return Catalog.create({ name, description, price });
+async function createCatalog(catalogData) {
+  return Catalogs.create(catalogData);
 }
 
-async function updateCatalog(id, name, description, price) {
-  return Catalog.updateOne({ _id: id }, { $set: { name, description, price } });
+async function updateCatalog(id, updateData) {
+  return Catalogs.findByIdAndUpdate(id, updateData, {
+    new: true,
+    runValidators: true,
+  });
 }
 
 async function deleteCatalog(id) {
-  return Catalog.deleteOne({ _id: id });
+  return Catalogs.deleteOne({ _id: id });
 }
 
 module.exports = {

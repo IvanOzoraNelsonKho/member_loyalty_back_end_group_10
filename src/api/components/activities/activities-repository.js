@@ -1,32 +1,21 @@
 const { Activities } = require('../../../models');
 
-async function getActivities() {
-  return Activities.find({});
+async function getActivities(userId = null) {
+  const filter = userId ? { userId } : {};
+  return Activities.find(filter).sort({ date: -1 });
 }
 
-async function getActivity(id) {
-  return Activities.findById(id);
-}
-
-async function createActivity(title, points, description) {
-  return Activities.create({ title, points, description });
-}
-
-async function updateActivity(id, title, points, description) {
-  return Activities.updateOne(
-    { _id: id },
-    { $set: { title, points, description } }
-  );
-}
-
-async function deleteActivity(id) {
-  return Activities.deleteOne({ _id: id });
+async function createActivity(userId, title, points, description) {
+  // Langsung definisikan field di dalam objek create
+  return Activities.create({
+    userId,
+    title,
+    points,
+    description,
+  });
 }
 
 module.exports = {
   getActivities,
-  getActivity,
   createActivity,
-  updateActivity,
-  deleteActivity,
 };

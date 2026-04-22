@@ -23,7 +23,6 @@ async function createOutlet(name, location, description) {
   } catch (err) {
     return null;
   }
-
   return true;
 }
 

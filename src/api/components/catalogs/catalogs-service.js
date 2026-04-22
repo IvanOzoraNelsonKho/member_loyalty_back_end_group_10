@@ -8,12 +8,12 @@ async function getCatalog(id) {
   return catalogsRepository.getCatalog(id);
 }
 
-async function createCatalog(name, description, price) {
-  return catalogsRepository.createCatalog(name, description, price);
+async function createCatalog(catalogData) {
+  return catalogsRepository.createCatalog(catalogData);
 }
 
-async function updateCatalog(id, name, description, price) {
-  return catalogsRepository.updateCatalog(id, name, description, price);
+async function updateCatalog(id, updateData) {
+  return catalogsRepository.updateCatalog(id, updateData);
 }
 
 async function deleteCatalog(id) {
