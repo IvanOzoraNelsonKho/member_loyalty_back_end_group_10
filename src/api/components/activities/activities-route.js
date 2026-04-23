@@ -8,7 +8,4 @@ module.exports = (app) => {
 
   route.get('/', activitiesController.getActivities);
   route.post('/', activitiesController.createActivity);
-  route.get('/:id', activitiesController.getActivity);
-  route.put('/:id', activitiesController.updateActivity);
-  route.delete('/:id', activitiesController.deleteActivity);
 };

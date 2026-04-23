@@ -11,7 +11,8 @@ const wallet = require('./components/wallet/wallet-route');
 const attendance = require('./components/attendance/attendance-route');
 const catalogs = require('./components/catalogs/catalogs-route');
 const outlets = require('./components/outlets/outlets-route');
-// const activities = require('./components/activities/activities-route');
+const banners = require('./components/banners/banners-route');
+const activities = require('./components/activities/activities-route');
 
 module.exports = () => {
   const app = express.Router();
@@ -22,6 +23,8 @@ module.exports = () => {
   attendance(app);
   catalogs(app);
   outlets(app);
+  banners(app);
+  activities(app);
 
   app.use('/auth', authRoutes);
   app.get('/vouchers', vouchersController.getVouchers);
