@@ -1,18 +1,63 @@
-# Backend Programming Template (2025)
+## LoyaltyApp - Backend API (Kelompok 10)
 
-## Development Setup
+## Pembagian Tugas & Tanggung Jawab:
 
-1. Fork and clone this repository to your local computer.
-2. Open the project using VS Code.
-3. Install the recommended VS Code extensions: `ESLint` and `Prettier`.
-4. Copy and rename `.env.example` to `.env`. Open `.env` and change the database connection string.
-5. Run `npm install` to install the project dependencies.
-6. Run `npm run dev` to start the dev server.
-7. Test the endpoints in the API client app.
+1. **Andrian Hartono (Autentikasi & Identitas)**
+   - Implementasi registrasi, dan manajemen profil user.
+2. **Ivan Ozora Nelson Kho (Saldo & Engagement)**
+   - Manajemen wallet (saldo/poin) dan sistem absensi harian (attendance).
+3. **Josephine Asnat (Etalase Produk & Aktivitas)**
+   - Katalog produk/merchandise dan riwayat aktivitas transaksi.
+4. **Kenny Martin Holiem (Core Bisnis Loyalty)**
+   - Sistem penukaran poin (redeem) dan manajemen voucher pengguna.
+5. **Diana (Informasi Pendukung)**
+   - Lokasi outlet terdekat dan manajemen banner promo.
 
-## Add New API Endpoints
+---
 
-1. Create a new database schema in `./src/models`.
-2. Create a new folder in `./src/api/components` (if needed). Remember to separate your codes to repositories, services, controllers, and routes.
-3. Add the new route in `./src/api/routes.js`.
-4. Test your new endpoints in the API client app.
+## Dokumentasi Endpoint API
+
+**Base URL:** `http://localhost:5000/api`
+
+### 1. Autentikasi (Andrian Hartono)
+
+| Method | Endpoint                          | Deskripsi                            |
+| :----- | :-------------------------------- | :----------------------------------- |
+| POST   | `/auth/register/verify-otp`       | Verifikasi kode OTP pendaftaran      |
+| POST   | `/auth/register/complete-profile` | Melengkapi profil setelah OTP sukses |
+| GET    | `/auth/profile/basic/:userId`     | Mengambil data profil dasar user     |
+
+### 2. Wallet & Attendance (Ivan Ozora Nelson Kho)
+
+| Method | Endpoint           | Deskripsi                       |
+| :----- | :----------------- | :------------------------------ |
+| PATCH  | `/wallet/:user_id` | Update saldo (topup/deduct)     |
+| GET    | `/wallet/:user_id` | Cek saldo/poin user             |
+| POST   | `/attendance`      | Pencatatan login harian (absen) |
+
+### 3. Catalogs & Activities (Josephine Asnat)
+
+| Method | Endpoint        | Deskripsi                                   |
+| :----- | :-------------- | :------------------------------------------ |
+| GET    | `/catalogs`     | Melihat semua katalog produk                |
+| GET    | `/catalogs/:id` | Melihat detail satu produk                  |
+| GET    | `/activities`   | Melihat riwayat aktivitas (query: `userId`) |
+| POST   | `/activities`   | Mencatat aktivitas transaksi baru           |
+
+### 4. Vouchers & Redeem (Kenny Martin Holiem)
+
+| Method | Endpoint               | Deskripsi                                  |
+| :----- | :--------------------- | :----------------------------------------- |
+| GET    | `/vouchers`            | Daftar voucher yang tersedia untuk ditukar |
+| POST   | `/redeem`              | Penukaran poin menjadi voucher             |
+| GET    | `/my-vouchers`         | Melihat daftar voucher milik user          |
+| PUT    | `/my-vouchers/:id/use` | Menggunakan voucher                        |
+
+### 5. Outlets & Banners (Diana)
+
+| Method | Endpoint   | Deskripsi                         |
+| :----- | :--------- | :-------------------------------- |
+| GET    | `/outlets` | Melihat daftar lokasi outlet      |
+| POST   | `/outlets` | Menambahkan data outlet baru      |
+| GET    | `/banners` | Melihat daftar banner promo aktif |
+| POST   | `/banners` | Menambahkan data banner baru      |
