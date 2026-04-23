@@ -14,22 +14,6 @@ async function getActivities(request, response, next) {
   }
 }
 
-async function createActivity(req, res, next) {
-  try {
-    const { userId, title, points, description } = req.body;
-
-    await activitiesService.logTransaction(userId, title, points, description);
-
-    return res.status(201).json({
-      status: 'success',
-      message: 'Aktivitas berhasil dicatat!',
-    });
-  } catch (error) {
-    return next(error);
-  }
-}
-
 module.exports = {
   getActivities,
-  createActivity,
 };

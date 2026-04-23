@@ -7,5 +7,4 @@ module.exports = (app) => {
   app.use('/activities', route);
 
   route.get('/', activitiesController.getActivities);
-  route.post('/', activitiesController.createActivity);
 };
