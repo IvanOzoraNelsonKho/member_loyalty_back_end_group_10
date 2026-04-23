@@ -7,7 +7,7 @@ exports.completeProfile = async (req, res) => {
     if (!emailOrPhone || !name || !password) {
       return res.status(400).json({
         success: false,
-        message: 'Isi datanya yang bener, kocak Jangan dikosongin.',
+        message: 'Masukkan data yang valid.',
       });
     }
     const newUser = new User({
@@ -20,15 +20,14 @@ exports.completeProfile = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: 'Cakep! Profile berhasil dibikin.',
-      data: { id: newUser._id, name: newUser.name }, // Jangan balikin passwordnya, gila lo!
+      message: 'Profile berhasil dibuat.',
+      data: { id: newUser._id, name: newUser.name },
     });
   } catch (error) {
-    // Kalau error pas save (misal email udah kepake)
     console.error('Error lengkapnya:', error);
     res.status(500).json({
       success: false,
-      message: 'Server lo meleduk atau email udah kepake.',
+      message: 'Server error. Silakan coba lagi nanti.',
     });
   }
 };
@@ -39,9 +38,8 @@ exports.getBasicProfile = async (req, res) => {
     if (!user) {
       return res
         .status(404)
-        .json({ success: false, message: 'User kagak ketemu anjir.' });
+        .json({ success: false, message: 'User tidak ditemukan.' });
     }
-    // Kalau ketemu, balikin datanya
     res.status(200).json({
       success: true,
       data: {
@@ -51,6 +49,6 @@ exports.getBasicProfile = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Error ngambil data.' });
+    res.status(500).json({ success: false, message: 'Error mengambil data.' });
   }
 };
