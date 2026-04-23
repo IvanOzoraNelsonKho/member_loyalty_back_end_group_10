@@ -21,11 +21,10 @@
 
 ### 1. Autentikasi (Andrian Hartono)
 
-| Method | Endpoint                          | Deskripsi                            |
-| :----- | :-------------------------------- | :----------------------------------- |
-| POST   | `/auth/register/verify-otp`       | Verifikasi kode OTP pendaftaran      |
-| POST   | `/auth/register/complete-profile` | Melengkapi profil setelah OTP sukses |
-| GET    | `/auth/profile/basic/:userId`     | Mengambil data profil dasar user     |
+| Method | Endpoint                          | Deskripsi                        |
+| :----- | :-------------------------------- | :------------------------------- |
+| POST   | `/auth/register/complete-profile` | Menyimpan data awal user         |
+| GET    | `/auth/profile/basic/:userId`     | Mengambil data profil dasar user |
 
 ### 2. Wallet & Attendance (Ivan Ozora Nelson Kho)
 
@@ -37,27 +36,23 @@
 
 ### 3. Catalogs & Activities (Josephine Asnat)
 
-| Method | Endpoint        | Deskripsi                                   |
-| :----- | :-------------- | :------------------------------------------ |
-| GET    | `/catalogs`     | Melihat semua katalog produk                |
-| GET    | `/catalogs/:id` | Melihat detail satu produk                  |
-| GET    | `/activities`   | Melihat riwayat aktivitas (query: `userId`) |
-| POST   | `/activities`   | Mencatat aktivitas transaksi baru           |
+| Method | Endpoint        | Deskripsi                    |
+| :----- | :-------------- | :--------------------------- |
+| GET    | `/catalogs`     | Melihat semua katalog produk |
+| GET    | `/catalogs/:id` | Melihat detail satu produk   |
+| GET    | `/activities`   | Melihat riwayat aktivitas    |
 
 ### 4. Vouchers & Redeem (Kenny Martin Holiem)
 
-| Method | Endpoint               | Deskripsi                                  |
-| :----- | :--------------------- | :----------------------------------------- |
-| GET    | `/vouchers`            | Daftar voucher yang tersedia untuk ditukar |
-| POST   | `/redeem`              | Penukaran poin menjadi voucher             |
-| GET    | `/my-vouchers`         | Melihat daftar voucher milik user          |
-| PUT    | `/my-vouchers/:id/use` | Menggunakan voucher                        |
+| Method | Endpoint               | Deskripsi                         |
+| :----- | :--------------------- | :-------------------------------- |
+| POST   | `/redeem`              | Penukaran poin menjadi voucher    |
+| GET    | `/my-vouchers`         | Melihat daftar voucher milik user |
+| PUT    | `/my-vouchers/:id/use` | Menggunakan voucher               |
 
 ### 5. Outlets & Banners (Diana)
 
 | Method | Endpoint   | Deskripsi                         |
 | :----- | :--------- | :-------------------------------- |
 | GET    | `/outlets` | Melihat daftar lokasi outlet      |
-| POST   | `/outlets` | Menambahkan data outlet baru      |
 | GET    | `/banners` | Melihat daftar banner promo aktif |
-| POST   | `/banners` | Menambahkan data banner baru      |
